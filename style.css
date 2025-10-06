@@ -4,7 +4,7 @@ body {
   font-family: Arial, Sans-serif; /*jenis huruf*/ 
   color: #191970; /* Warna teks utama (biru gelap)*/
 }
-.kartu-profil {
+.Kartu-Profil {
   width: 300px;
   margin: 50px auto;
   padding: 20px;
@@ -13,7 +13,7 @@ body {
   box-shadow:0 4px 8px rgba(0,0,0,0,1);
   text-align: center;
 }
-.kartu-profil img {
+.Kartu-Profil img {
   width: 150px;
   border-radius: 50px;
 }
