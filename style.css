@@ -2,7 +2,7 @@ body {
   
   background-color: #B5B0B0; /* kuning cerah*/
   font-family: Arial, Sans-serif; /*jenis huruf*/ 
-  color: #191970; /* Warna teks utama (biru gelap)*/
+  color: #000000; /* Warna teks utama (biru gelap)*/
 }
 .Kartu-Profil {
   width: 300px;
