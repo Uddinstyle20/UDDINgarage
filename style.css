@@ -1,12 +1,10 @@
-/* === Style Umum === */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   background-color: #f4f4f4;
   color: #333;
 }
 
-/* === Navigasi === */
 header {
   background: #20232a;
   color: white;
@@ -37,9 +35,9 @@ nav a:hover {
   color: #f39c12;
 }
 
-/* === Hero Section === */
 .hero {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bengkel-bg.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("bengkel-bg.jpg") center/cover no-repeat;
   color: white;
   text-align: center;
   padding: 100px 20px;
@@ -72,7 +70,6 @@ nav a:hover {
   background: #e67e22;
 }
 
-/* === Layanan === */
 .layanan {
   text-align: center;
   padding: 50px 20px;
@@ -91,7 +88,7 @@ nav a:hover {
   background: #fafafa;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 250px;
   transition: transform 0.3s ease;
 }
@@ -101,7 +98,6 @@ nav a:hover {
   background: #fef5e7;
 }
 
-/* === Antrian === */
 .antrian {
   padding: 50px 20px;
   background: #f7f7f7;
@@ -116,7 +112,7 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
-#formAntrian input, 
+#formAntrian input,
 #formAntrian select {
   padding: 10px;
   border: 1px solid #ccc;
@@ -148,18 +144,16 @@ nav a:hover {
   width: 60%;
   padding: 12px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-weight: 500;
 }
 
-/* === Kontak === */
 .kontak {
   background: #fff;
   padding: 50px 20px;
   text-align: center;
 }
 
-/* === Footer === */
 footer {
   background: #20232a;
   color: #bbb;
