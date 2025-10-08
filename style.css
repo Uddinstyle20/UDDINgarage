@@ -1,19 +1,168 @@
+/* === Style Umum === */
 body {
-  
-  background-color: #B5B0B0; /* kuning cerah*/
-  font-family: Arial, Sans-serif; /*jenis huruf*/ 
-  color: #121111; /* Warna teks utama (biru gelap)*/
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
-.Kartu-Profil {
-  width: 300px;
-  margin: 50px auto;
+
+/* === Navigasi === */
+header {
+  background: #20232a;
+  color: white;
+  padding: 15px 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #f39c12;
+}
+
+/* === Hero Section === */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bengkel-bg.jpg') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero-content .profil {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 3px solid white;
+}
+
+.hero-content span {
+  color: #f39c12;
+}
+
+.btn {
+  display: inline-block;
+  background: #f39c12;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #e67e22;
+}
+
+/* === Layanan === */
+.layanan {
+  text-align: center;
+  padding: 50px 20px;
+  background: #fff;
+}
+
+.layanan-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: #fafafa;
   padding: 20px;
-  background-color:white;
-  border-radius:15px;
-  box-shadow:0 4px 8px rgba(0,0,0,0,1);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: #fef5e7;
+}
+
+/* === Antrian === */
+.antrian {
+  padding: 50px 20px;
+  background: #f7f7f7;
   text-align: center;
 }
-.Kartu-Profil img {
-  width: 150px;
-  border-radius: 50px;
+
+#formAntrian {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#formAntrian input, 
+#formAntrian select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 200px;
+}
+
+#formAntrian button {
+  background: #f39c12;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#formAntrian button:hover {
+  background: #e67e22;
+}
+
+.daftar-antrian ul {
+  list-style: none;
+  padding: 0;
+}
+
+.daftar-antrian li {
+  background: #fff;
+  margin: 8px auto;
+  width: 60%;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-weight: 500;
+}
+
+/* === Kontak === */
+.kontak {
+  background: #fff;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* === Footer === */
+footer {
+  background: #20232a;
+  color: #bbb;
+  text-align: center;
+  padding: 15px;
 }
