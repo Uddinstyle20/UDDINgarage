@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UDDINgarage - Bengkel Motor</title>
-
-  <!-- Hubungkan ke file CSS -->
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -33,14 +31,10 @@
       />
       <h2>Selamat Datang di <span>UDDINgarage</span></h2>
       <p>Bengkel modern dengan pelayanan cepat, jujur, dan profesional.</p>
-      <a
-        href="https://www.instagram.com/uddinstyle/"
-        target="_blank"
-        class="btn"
-      >
+      <a href="https://www.instagram.com/uddinstyle/" target="_blank" class="btn">
         Kunjungi Instagram
       </a>
-      <br /><br />
+      <br><br>
       <button id="sapaButton">Sapa Saya!</button>
     </div>
   </section>
@@ -49,14 +43,59 @@
   <section id="layanan" class="layanan">
     <h2>Layanan Kami</h2>
     <div class="layanan-container">
+      
+      <!-- Servis Ringan (dapat dibuka) -->
       <div class="card">
-        <h3>Servis Ringan</h3>
-        <p>Ganti oli, cek rantai, dan perawatan ringan lainnya.</p>
+        <button class="accordion">Servis Ringan</button>
+        <div class="panel">
+          <h4>Jenis Servis:</h4>
+          <ul>
+            <li><b>Ganti Oli:</b>
+              <ul>
+                <li>Oli Top 1</li>
+                <li>Castrol</li>
+                <li>Yamalube</li>
+                <li>Federal Oil</li>
+                <li>Shell Advance</li>
+              </ul>
+            </li>
+            <li><b>Cek Rantai:</b>
+              <ul>
+                <li>Pembersihan rantai</li>
+                <li>Pelumasan rantai</li>
+                <li>Setel ketegangan sesuai standar pabrikan</li>
+                <li>Pengecekan gear depan & belakang</li>
+              </ul>
+            </li>
+            <li><b>Perawatan Ringan:</b>
+              <ul>
+                <li>Pengecekan rem depan & belakang</li>
+                <li>Pembersihan filter udara</li>
+                <li>Pengecekan tekanan ban</li>
+                <li>Pengecekan busi dan kabel</li>
+              </ul>
+            </li>
+          </ul>
+          <h4>Jenis Motor yang Dilayani:</h4>
+          <ul class="motor-list">
+            <li>Honda (Beat, Vario, Supra, Scoopy)</li>
+            <li>Yamaha (Mio, Nmax, Aerox, Vega)</li>
+            <li>Suzuki (Satria, Nex, Smash, Address)</li>
+          </ul>
+          <p class="note">
+            Semua servis dilakukan oleh mekanik profesional dengan prosedur bengkel resmi:
+            penggunaan alat torsi, penggantian komponen sesuai standar, dan pemeriksaan akhir kualitas servis.
+          </p>
+        </div>
       </div>
+
+      <!-- Servis Berat -->
       <div class="card">
         <h3>Servis Berat</h3>
         <p>Perbaikan mesin, transmisi, dan sistem injeksi.</p>
       </div>
+
+      <!-- Modifikasi -->
       <div class="card">
         <h3>Modifikasi</h3>
         <p>Gaya custom motor, knalpot, lampu, dan body kit.</p>
@@ -68,12 +107,7 @@
   <section id="antrian" class="antrian">
     <h2>🧾 Daftar Antrian Pelanggan</h2>
     <form id="formAntrian">
-      <input
-        type="text"
-        id="namaPelanggan"
-        placeholder="Masukkan nama anda"
-        required
-      />
+      <input type="text" id="namaPelanggan" placeholder="Masukkan nama anda" required />
       <select id="jenisServis" required>
         <option value="">Pilih jenis servis</option>
         <option value="Servis Ringan">Servis Ringan</option>
@@ -101,7 +135,6 @@
     <p>© 2025 UDDINgarage | Dirancang oleh Uddin</p>
   </footer>
 
-  <!-- Hubungkan ke file JavaScript -->
   <script src="./script.js"></script>
 </body>
 </html>
