@@ -1,22 +1,87 @@
 <!DOCTYPE html>
-<html>
- <head>
-   <title>UDDINgarage - Uddin</title>
-   <link rel="stylesheet" href="style.css">
-   <title>Bengkel UDDIN</title>
- </head>
- <body>
-    <div class="Kartu-Profil">
-     <img src="WhatsApp Image 2025-04-16 at 21.30.51_d906b8cc.jpg" alt="Foto saya">
-     <h1>Uddin</h1>
-      <p>Saya ya saya!</p>
-      <a
-      href="https://www.instagram.com/uddinstyle/">Klik untuk ke instagram
-      </a>
-      <p>Ini adalah platform untuk UDDIN garage</p>
-   <!-- konten yang terlihat oleh pengunjung akan ada disini-->
-     <button id="sapaButton">Sapa Saya!</button>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDDINgarage - Bengkel Motor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigasi -->
+  <header>
+    <nav>
+      <h1>🛠️ UDDINgarage</h1>
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="#antrian">Antrian</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Beranda -->
+  <section id="beranda" class="hero">
+    <div class="hero-content">
+      <img src="WhatsApp Image 2025-04-16 at 21.30.51_d906b8cc.jpg" alt="Foto saya" class="profil">
+      <h2>Selamat Datang di <span>UDDINgarage</span></h2>
+      <p>Bengkel modern dengan pelayanan cepat, jujur, dan profesional.</p>
+      <a href="https://www.instagram.com/uddinstyle/" target="_blank" class="btn">Kunjungi Instagram</a>
     </div>
-   <script src="script.js"></script>
- </body>
+  </section>
+
+  <!-- Layanan -->
+  <section id="layanan" class="layanan">
+    <h2>Layanan Kami</h2>
+    <div class="layanan-container">
+      <div class="card">
+        <h3>Servis Ringan</h3>
+        <p>Ganti oli, cek rantai, dan perawatan ringan lainnya.</p>
+      </div>
+      <div class="card">
+        <h3>Servis Berat</h3>
+        <p>Perbaikan mesin, transmisi, dan sistem injeksi.</p>
+      </div>
+      <div class="card">
+        <h3>Modifikasi</h3>
+        <p>Gaya custom motor, knalpot, lampu, dan body kit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Antrian Pelanggan -->
+  <section id="antrian" class="antrian">
+    <h2>🧾 Daftar Antrian Pelanggan</h2>
+    <form id="formAntrian">
+      <input type="text" id="namaPelanggan" placeholder="Masukkan nama anda" required>
+      <select id="jenisServis" required>
+        <option value="">Pilih jenis servis</option>
+        <option value="Servis Ringan">Servis Ringan</option>
+        <option value="Servis Berat">Servis Berat</option>
+        <option value="Modifikasi">Modifikasi</option>
+      </select>
+      <button type="submit">Tambah ke Antrian</button>
+    </form>
+
+    <div class="daftar-antrian">
+      <h3>Daftar Antrian Saat Ini</h3>
+      <ul id="listAntrian"></ul>
+    </div>
+  </section>
+
+  <!-- Kontak -->
+  <section id="kontak" class="kontak">
+    <h2>Hubungi Kami</h2>
+    <p>📍 Alamat: Jl. Mekanik No. 77, Kediri</p>
+    <p>📞 Telepon: 0812-3456-7890</p>
+    <p>✉️ Email: uddingarage@gmail.com</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UDDINgarage | Dirancang oleh Uddin</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
