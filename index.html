@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UDDINgarage - Bengkel Motor</title>
   <link rel="stylesheet" href="./style.css" />
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -126,6 +128,8 @@
               <ul>
                 <li>servis sesusai request apa yang diminta di luar dari pilihan diatas, atau mungkin menambahkan suatu hal dengan cara dm admin dan lakukan konsultasi terlebihdahulu. </li>
               </ul>
+            </li>
+          </ul>
 
           <h4>No admin:</h4>
           <ul class="motor-list">
@@ -142,6 +146,20 @@
   <!-- Antrian -->
   <section id="antrian" class="antrian">
     <h2>🧾 Daftar Antrian Pelanggan</h2>
+
+    <!-- Petunjuk singkat cara daftar (baru) -->
+    <div class="petunjuk">
+      <button class="accordion petunjuk-acc">Cara mendaftar antrian (klik untuk lihat)</button>
+      <div class="panel">
+        <ol>
+          <li>Masukkan nama lengkap Anda pada kotak "Masukkan nama anda".</li>
+          <li>Pilih jenis servis yang diinginkan.</li>
+          <li>Tekan "Tambah ke Antrian". Data akan otomatis disimpan.</li>
+          <li>Jika ingin menghapus, tekan tombol merah di samping nama pada daftar antrian.</li>
+        </ol>
+      </div>
+    </div>
+
     <form id="formAntrian">
       <input type="text" id="namaPelanggan" placeholder="Masukkan nama anda" required />
       <select id="jenisServis" required>
@@ -165,11 +183,27 @@
     <p>📍 Alamat: Jl. Jl. Raya Kediri - Blitar No.71, Pule Utara, Pule, Kec. Kandat, Kabupaten Kediri, Jawa Timur 64173</p>
     <p>📞 Telepon: 0812-3423-3366</p>
     <p>✉️ Email: sparkyteam@gmail.com</p>
+
+    <!-- Lokasi & jam operasional (baru) -->
+    <div class="lokasi-jam">
+      <h4>Lokasi & Jam Operasional</h4>
+      <p>Senin - Sabtu: 08.00 - 17.00</p>
+      <p>Minggu: Tutup</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Raya+Kediri+Blitar+No.71" target="_blank" class="btn-small">Lihat di Google Maps</a>
+    </div>
   </section>
 
   <footer>
     <p>© 2025 SPARKYteam | Dirancang oleh itsparky</p>
   </footer>
+
+  <!-- Tombol WhatsApp mengambang (baru) -->
+  <a id="whatsappFloating" class="whatsapp-float" href="https://wa.me/6281234567890?text=Halo%20SPARKY%20%2C%20saya%20ingin%20bertanya%20tentang%20servis%20." target="_blank" aria-label="Chat via WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+      <path fill="currentColor" d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 .01 5.36.01 12A11.9 11.9 0 0 0 3.22 18L0 24l6.23-3.22A11.9 11.9 0 0 0 12 24c6.63 0 11.99-5.36 11.99-12 0-3.2-1.24-6.18-3.47-8.52zM12 21.75c-1.5 0-2.97-.39-4.27-1.13l-.31-.18-3.72 1 1-3.63-.2-.33A8.8 8.8 0 0 1 3.25 12c0-4.86 3.89-8.75 8.75-8.75S20.75 7.14 20.75 12 16.86 21.75 12 21.75z"/>
+      <path fill="currentColor" d="M16.76 14.03c-.26-.13-1.55-.77-1.79-.86-.23-.09-.4-.13-.57.13-.17.26-.66.86-.81 1.04-.15.17-.3.19-.56.06-.26-.13-1.12-.41-2.13-1.31-.79-.7-1.32-1.56-1.48-1.82-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.07-.13-.57-1.37-.78-1.88-.2-.5-.41-.43-.57-.44-.15-.01-.33-.01-.51-.01-.17 0-.45.06-.69.33-.24.26-.93.91-.93 2.22s.95 2.57 1.08 2.75c.13.18 1.85 2.88 4.49 3.93 3.09 1.21 3.09.81 3.64.76.55-.05 1.79-.74 2.04-1.45.25-.71.25-1.32.18-1.45-.07-.13-.26-.18-.52-.31z"/>
+    </svg>
+  </a>
 
   <!-- Pastikan ini ada di paling bawah -->
   <script src="./script.js"></script>
