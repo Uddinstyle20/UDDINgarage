@@ -1,105 +1,146 @@
-// === Sapa ===
-document.getElementById("sapaButton").addEventListener("click", () => {
-  alert("Halo! Selamat datang di UDDINgarage 😎");
-});
-
-// === Slider ===
-const slides = document.querySelectorAll(".slide");
-let index = 0;
-const next = document.getElementById("nextSlide");
-const prev = document.getElementById("prevSlide");
-
-function showSlide(i) {
-  slides.forEach(s => s.classList.remove("active"));
-  slides[i].classList.add("active");
-}
-
-next.addEventListener("click", () => {
-  index = (index + 1) % slides.length;
-  showSlide(index);
-});
-prev.addEventListener("click", () => {
-  index = (index - 1 + slides.length) % slides.length;
-  showSlide(index);
-});
-
-// === Toggle buka/tutup layanan ===
-const toggleBtn = document.getElementById("toggleLayanan");
-const slideWrapper = document.querySelector(".slide-wrapper");
-toggleBtn.addEventListener("click", () => {
-  slideWrapper.classList.toggle("closed");
-});
-
-// === Sistem Antrian ===
-const form = document.getElementById("formAntrian");
-const list = document.getElementById("listAntrian");
-let data = JSON.parse(localStorage.getItem("antrian")) || [];
-
-function updateList() {
-  list.innerHTML = "";
-  data.forEach((d, i) => {
-    const li = document.createElement("li");
-    li.textContent = `${i + 1}. ${d.nama} - ${d.servis}`;
-    const del = document.createElement("button");
-    del.textContent = "Hapus";
-    del.className = "hapus-btn";
-    del.onclick = () => {
-      data.splice(i, 1);
-      save();
-      updateList();
-    };
-    li.appendChild(del);
-    list.appendChild(li);
+// === Tombol sapaan (tetap dipertahankan) ===
+const sapaButton = document.getElementById("sapaButton");
+if (sapaButton) {
+  sapaButton.addEventListener("click", () => {
+    alert("Halo! Selamat datang di UDDINgarage 😎");
   });
 }
-function save() {
-  localStorage.setItem("antrian", JSON.stringify(data));
-}
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const nama = document.getElementById("namaPelanggan").value.trim();
-  const servis = document.getElementById("jenisServis").value;
-  if (!nama || !servis) return alert("Lengkapi nama dan jenis servis!");
-  data.push({ nama, servis });
-  save();
-  updateList();
-  form.reset();
-});
-updateList();
 
-// === Accordion Petunjuk ===
-document.querySelectorAll(".accordion").forEach(acc => {
-  acc.addEventListener("click", () => {
-    acc.classList.toggle("active");
-    const panel = acc.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+// === Sistem Antrian dengan localStorage (integrasi tanpa menghapus struktur asli) ===
+const formAntrian = document.getElementById("formAntrian");
+const listAntrian = document.getElementById("listAntrian");
+
+// Ambil data antrian dari localStorage (atau inisialisasi array kosong)
+let antrian = JSON.parse(localStorage.getItem("uddiN_antrian")) || [];
+
+// Menampilkan antrian ke UI
+function tampilkanAntrian() {
+  if (!listAntrian) return;
+  listAntrian.innerHTML = "";
+  antrian.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.className = "antrian-item";
+    li.innerHTML = `
+      <span>${index + 1}. ${escapeHtml(item.nama)} - ${escapeHtml(item.servis)}</span>
+    `;
+    // tombol hapus
+    const hapusBtn = document.createElement("button");
+    hapusBtn.className = "hapus-btn";
+    hapusBtn.textContent = "Hapus";
+    hapusBtn.addEventListener("click", () => {
+      // konfirmasi singkat
+      const ok = confirm(`Hapus antrian: ${item.nama} - ${item.servis} ?`);
+      if (!ok) return;
+      antrian.splice(index, 1);
+      simpanAntrian();
+      tampilkanAntrian();
+    });
+    li.appendChild(hapusBtn);
+    listAntrian.appendChild(li);
+  });
+}
+
+// Simpan ke localStorage
+function simpanAntrian() {
+  localStorage.setItem("uddiN_antrian", JSON.stringify(antrian));
+}
+
+// Submit form tambah antrian
+if (formAntrian) {
+  formAntrian.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const namaInput = document.getElementById("namaPelanggan");
+    const jenisSelect = document.getElementById("jenisServis");
+    const nama = namaInput ? namaInput.value.trim() : "";
+    const servis = jenisSelect ? jenisSelect.value : "";
+
+    if (!nama || !servis) {
+      alert("Mohon isi nama dan pilih jenis servis.");
+      return;
+    }
+
+    antrian.push({ nama, servis, createdAt: new Date().toISOString() });
+    simpanAntrian();
+    tampilkanAntrian();
+    formAntrian.reset();
+    // memberi fokus ke input lagi
+    if (namaInput) namaInput.focus();
+  });
+}
+
+// Inisialisasi tampilan antrian saat halaman dibuka
+tampilkanAntrian();
+
+
+// === Accordion (gunakan perilaku yang kamu tulis -> pertahankan) ===
+const accordions = document.querySelectorAll(".accordion");
+accordions.forEach((accordion) => {
+  accordion.addEventListener("click", () => {
+    const panel = accordion.nextElementSibling;
+    accordion.classList.toggle("active");
+
+    if (panel) {
+      if (panel.classList.contains("open")) {
+        panel.classList.remove("open");
+      } else {
+        // tutup panel lain agar hanya satu yang terbuka
+        document.querySelectorAll(".panel").forEach((p) => p.classList.remove("open"));
+        panel.classList.add("open");
+      }
     }
   });
 });
 
-// === ELEMENT UTAMA ===
-const layananSection = document.getElementById("layananSection");
-const toggleLayanan = document.getElementById("toggleLayanan");
-const closeLayanan = document.getElementById("closeLayanan");
-const layananButtons = document.querySelectorAll(".layanan-btn");
+// === Helper: escapeHtml untuk mencegah XSS ketika menampilkan input user ===
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+}
 
-// === BUKA DAN TUTUP BAGIAN UTAMA ===
-toggleLayanan.addEventListener("click", () => {
-  layananSection.classList.add("active");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+// === (Opsional) Kosmetik: Notifikasi kecil saat ada item baru (bukan alert) ===
+function showToast(message, ms = 2200) {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.position = "fixed";
+  toast.style.left = "50%";
+  toast.style.transform = "translateX(-50%)";
+  toast.style.bottom = "28px";
+  toast.style.background = "linear-gradient(90deg,#4fc3f7,#1e88e5)";
+  toast.style.color = "#fff";
+  toast.style.padding = "10px 16px";
+  toast.style.borderRadius = "10px";
+  toast.style.boxShadow = "0 10px 30px rgba(30,58,138,0.12)";
+  toast.style.zIndex = 9999;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.transition = "opacity .3s"; toast.style.opacity = 0; }, ms - 300);
+  setTimeout(() => { toast.remove(); }, ms);
+}
 
-closeLayanan.addEventListener("click", () => {
-  layananSection.classList.remove("active");
-});
-
-// === ANIMASI BUKA/TUTUP PER LAYANAN ===
-layananButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const detail = btn.nextElementSibling;
-    detail.classList.toggle("open");
+// Hook kecil: tunjukkan toast saat antrian bertambah (non-intrusive)
+(function attachToastHook(){
+  if (!formAntrian) return;
+  formAntrian.addEventListener("submit", () => {
+    setTimeout(()=> showToast("Antrian berhasil ditambahkan ✅", 2000), 300);
   });
-});
+})();
+
+
+// === WhatsApp floating action (nomor sudah kamu berikan) ===
+// Link sudah ada di HTML; kita bisa menambahkan animasi atau indicator jika idle — contoh pulse:
+(function addWhatsappPulse(){
+  const wa = document.getElementById("whatsappFloating");
+  if (!wa) return;
+  // beri efek pulse sederhana berkala
+  wa.style.boxShadow = "0 12px 34px rgba(18,140,126,0.24)";
+  let up = true;
+  setInterval(()=>{
+    if (up) { wa.style.transform = "translateY(-6px) rotate(-4deg)"; up = false; }
+    else { wa.style.transform = "translateY(0) rotate(0deg)"; up = true; }
+  }, 4200);
+})();
