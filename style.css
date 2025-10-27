@@ -164,3 +164,89 @@ footer { background: linear-gradient(90deg,var(--accent),#133b7a); color:white; 
   nav ul { display:none; } /* keep it simple; you can add burger later */
   .daftar-antrian li { width:92%; }
   #formAntrian input, #formAntrian select { width:100%; }
+
+  /* ====== LAYANAN SLIDE ====== */
+.layanan-slide {
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+  color: #0d47a1;
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
+}
+
+.judul-section {
+  font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 40px;
+  color: #0d47a1;
+  letter-spacing: 1px;
+}
+
+.slide-container {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  min-width: 100%;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.icon-layanan {
+  font-size: 60px;
+  color: #4fc3f7;
+  margin-bottom: 20px;
+  animation: glowPulse 2s infinite alternate;
+}
+
+.slide h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #0a0a0a;
+}
+
+.slide p {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.slide-nav {
+  margin-top: 40px;
+}
+
+.slide-nav button {
+  background-color: #4fc3f7;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.slide-nav button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #4fc3f7;
+}
+
+/* Animasi kilau futuristik */
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 10px #4fc3f7, 0 0 20px #4fc3f7; }
+  100% { text-shadow: 0 0 30px #4fc3f7, 0 0 60px #4fc3f7; }
+}
