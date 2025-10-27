@@ -144,3 +144,26 @@ function showToast(message, ms = 2200) {
     else { wa.style.transform = "translateY(0) rotate(0deg)"; up = true; }
   }, 4200);
 })();
+
+// ===== SLIDER LAYANAN =====
+const slides = document.querySelectorAll('.slide');
+const nextSlide = document.getElementById('nextSlide');
+const prevSlide = document.getElementById('prevSlide');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) slide.classList.add('active');
+  });
+}
+
+nextSlide.addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+prevSlide.addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+});
