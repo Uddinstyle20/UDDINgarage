@@ -79,3 +79,27 @@ document.querySelectorAll(".accordion").forEach(acc => {
     }
   });
 });
+
+// === ELEMENT UTAMA ===
+const layananSection = document.getElementById("layananSection");
+const toggleLayanan = document.getElementById("toggleLayanan");
+const closeLayanan = document.getElementById("closeLayanan");
+const layananButtons = document.querySelectorAll(".layanan-btn");
+
+// === BUKA DAN TUTUP BAGIAN UTAMA ===
+toggleLayanan.addEventListener("click", () => {
+  layananSection.classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+closeLayanan.addEventListener("click", () => {
+  layananSection.classList.remove("active");
+});
+
+// === ANIMASI BUKA/TUTUP PER LAYANAN ===
+layananButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const detail = btn.nextElementSibling;
+    detail.classList.toggle("open");
+  });
+});
