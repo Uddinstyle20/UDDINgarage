@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SPARKY — Direktori</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="direktori.html" aria-label="SPARKY — Beranda">
+        <span class="logo-wrap" role="img" aria-label="SPARKY logo">
+          <img src="logo.png" srcset="logo@2x.png 2x" alt="SPARKY logo" class="logo" width="72" height="72" loading="lazy" decoding="async" />
+        </span>
+      </a>
+    </div>
+
+    <nav class="site-nav" role="navigation" aria-label="Main menu">
+      <a href="index.html">Beranda</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="direktori.html">Direktori</a>
+      <a href="blogs.html">Blogs</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="themeToggle" class="btn-ghost" type="button" aria-pressed="false" aria-label="Beralih mode gelap/terang">🌗</button>
+    </div>
+  </div>
+</header>
+
+    <main>
+        <section class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+                <div>
+                    <h2>Direktori Layanan</h2>
+                    <p class="muted">Temukan layanan, lokasi, dan kontak teknisi SPARKY.</p>
+                </div>
+                <div style="text-align:right;">
+                    <button id="addEntry" class="btn" title="Tambah entri baru">Tambah Entri</button>
+                </div>
+            </div>
+
+            <div class="search-bar" role="search" aria-label="Cari direktori">
+                <input id="searchInput" type="search" placeholder="Cari nama, kategori, atau lokasi..." aria-label="Cari direktori" />
+                <select id="categoryFilter" aria-label="Filter kategori">
+                    <option value="">Semua Kategori</option>
+                    <option value="Servis Ringan">Servis Ringan</option>
+                    <option value="Servis Berat">Servis Berat</option>
+                    <option value="Konsultasi">Konsultasi</option>
+                </select>
+                <button id="clearFilters" class="btn-outline" type="button">Reset</button>
+            </div>
+
+            <!-- Grid cards for mobile / small screens -->
+            <div id="dirGrid" class="dir-grid" aria-live="polite"></div>
+
+            <!-- Table for desktop -->
+            <div class="table-responsive">
+                <table id="dirTable" class="directory-table" role="table" aria-label="Tabel direktori">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Kategori</th>
+                            <th>Lokasi</th>
+                            <th>Kontak</th>
+                            <th style="width:150px; text-align:right;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dirTbody">
+                        <tr class="directory-empty"><td colspan="5">Memuat data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 SPARKY — Semua hak dilindungi.</small>
+        </div>
+    </footer>
+
+    <!-- include common UI script (adds nav active + theme toggle) -->
+    <script src="script.js" defer></script>
+
+    <!-- existing directory-specific client script (kept) -->
+    <script>
+    // Lightweight client: fetch entries and render grid/table. Penghapusan entri dinonaktifkan.
+    async function fetchEntries() {
+      try {
+        const res = await fetch('/admin/entries');
+        if (!res.ok) throw new Error('Fetch error');
+        return await res.json();
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderCards(entries, container) {
+      container.innerHTML = '';
+      if (!entries.length) {
+        container.innerHTML = '<div class="directory-empty">Tidak ada entri.</div>';
+        return;
+      }
+      entries.forEach(e => {
+        const card = document.createElement('article');
+        card.className = 'dir-card';
+        card.innerHTML = `
+          <div class="meta">
+            <h3>${escapeHtml(e.name || '—')}</h3>
+            <span class="badge">${escapeHtml(e.category || 'Umum')}</span>
+          </div>
+          <p>${escapeHtml(e.location || '—')}</p>
+          <p style="font-weight:600">${escapeHtml(e.contact || '-')}</p>
+          <div class="dir-actions">
+            <button class="btn view-btn" data-id="${e.id}">Lihat</button>
+            <button class="btn edit-btn" data-id="${e.id}">Edit</button>
+          </div>`;
+        container.appendChild(card);
+      });
+    }
+
+    function renderTable(entries, tbody) {
+      tbody.innerHTML = '';
+      if (!entries.length) {
+        tbody.innerHTML = '<tr class="directory-empty"><td colspan="5">Tidak ada entri.</td></tr>';
+        return;
+      }
+      entries.forEach(e => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${escapeHtml(e.name || '—')}</td>
+          <td>${escapeHtml(e.category || 'Umum')}</td>
+          <td>${escapeHtml(e.location || '—')}</td>
+          <td>${escapeHtml(e.contact || '-')}</td>
+          <td style="text-align:right;">
+            <button class="btn view-btn" data-id="${e.id}">Lihat</button>
+            <button class="btn edit-btn" data-id="${e.id}">Edit</button>
+          </td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    (function init(){
+      const search = document.getElementById('searchInput');
+      const filter = document.getElementById('categoryFilter');
+      const clear = document.getElementById('clearFilters');
+      const dirGrid = document.getElementById('dirGrid');
+      const dirTbody = document.getElementById('dirTbody');
+
+      let entries = [];
+
+      async function load() {
+        entries = await fetchEntries();
+        apply();
+      }
+
+      function apply(){
+        const q = (search.value || '').toLowerCase().trim();
+        const cat = filter.value;
+        const filtered = entries.filter(e => {
+          const matchesQ = !q || ( (e.name||'').toLowerCase().includes(q) || (e.location||'').toLowerCase().includes(q) || (e.category||'').toLowerCase().includes(q) );
+          const matchesCat = !cat || (e.category === cat);
+          return matchesQ && matchesCat;
+        });
+        renderCards(filtered, dirGrid);
+        renderTable(filtered, dirTbody);
+      }
+
+      clear.addEventListener('click', () => { search.value=''; filter.value=''; apply(); });
+      search.addEventListener('input', apply);
+      filter.addEventListener('change', apply);
+
+      // Delegated actions: hanya view / edit (hapus dinonaktifkan)
+      document.addEventListener('click', async (ev) => {
+        const btn = ev.target.closest('button[data-id]');
+        if (!btn) return;
+        const id = btn.getAttribute('data-id');
+        if (btn.classList.contains('edit-btn')) {
+          // placeholder: open edit form or navigate
+          alert('Fitur edit - belum tersedia.');
+        } else if (btn.classList.contains('view-btn')) {
+          alert('Lihat detail: ' + id);
+        }
+      });
+
+      // initial load
+      load();
+    })();
+    </script>
+</body>
+</html>

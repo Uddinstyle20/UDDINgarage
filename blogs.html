@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SPARKY — Blogs</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header" role="banner">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="blogs.html" aria-label="SPARKY — Beranda">
+      <span class="logo-wrap" role="img" aria-label="SPARKY logo">
+        <img src="logo.png" srcset="logo@2x.png 2x" alt="SPARKY logo" class="logo" width="72" height="72" loading="lazy" decoding="async" />
+      </span>
+      </a>
+      <!-- brand title intentionally hidden for highlight logo -->
+    </div>
+
+    <nav class="site-nav" role="navigation" aria-label="Main menu">
+      <a href="index.html">Beranda</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="direktori.html">Direktori</a>
+      <a href="blogs.html">Blogs</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="themeToggle" class="btn-ghost" type="button" aria-pressed="false" aria-label="Beralih mode gelap/terang">🌗</button>
+    </div>
+  </div>
+</header>
+    <main>
+        <section class="container">
+            <h2>Blogs Management</h2>
+            <p class="muted">Manage your blog entries here.</p>
+            <button id="deleteAllBlogs" class="btn-danger">Hapus Semua Blog</button>
+            <div id="blogsList" class="blogs-list">
+                <p class="muted">Daftar blog akan ditampilkan di sini.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 SPARKY — Semua hak dilindungi.</small>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
