@@ -1,133 +1,289 @@
-<!-- ...existing code... -->
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SPARKY — Layanan Servis Profesional</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SPARKY — Beranda</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <div class="brand">
-        <img src="logo.jpg" alt="SPARKY logo" class="logo" />
-        <h1>SPARKY</h1>
-      </div>
-      <nav class="site-nav" role="navigation" aria-label="Main menu">
-        <a href="#beranda">Beranda</a>
-        <a href="#layanan">Layanan</a>
-        <a href="#antrian">Antrian</a>
-        <a href="#kontak">Kontak</a>
-      </nav>
-
-      <!-- Theme toggle -->
-      <div class="header-actions">
-        <button id="themeToggle" class="btn btn-ghost" type="button" aria-pressed="false" aria-label="Beralih mode gelap/terang">🌗</button>
-      </div>
+    <header class="site-header" role="banner">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="logo-wrap" role="img" aria-label="SPARKY logo">
+        <img src="logo.png" srcset="logo@2x.png 2x" alt="SPARKY logo" class="logo" width="72" height="72" loading="lazy" decoding="async" />
+      </span>
+      <!-- brand title intentionally hidden for highlight logo -->
     </div>
-  </header>
 
-  <main>
-    <section id="beranda" class="hero container">
-      <div class="hero-inner">
-        <h2>Pelayanan cepat, jujur, profesional</h2>
-        <p>Perbaikan alat elektronik rumah tangga & industri oleh teknisi bersertifikat.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#antrian">Daftar Antrian</a>
-          <button id="sapaButton" class="btn btn-outline" type="button">Sapa Kami</button>
-        </div>
-      </div>
-    </section>
+    <nav class="site-nav" role="navigation" aria-label="Main menu">
+      <a href="index.html">Beranda</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="direktori.html">Direktori</a>
+      <a href="blogs.html">Blogs</a>
+    </nav>
 
-    <section id="layanan" class="container">
-      <h2>Layanan Kami</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Servis Ringan</h3>
-          <p>Perbaikan perangkat rumah tangga: kipas, dispenser, lampu, dan lainnya.</p>
-        </article>
-        <article class="card">
-          <h3>Servis Berat</h3>
-          <p>Perbaikan peralatan industri & komponen dengan prosedur keselamatan lengkap.</p>
-        </article>
-        <article class="card">
-          <h3>Custom / Konsultasi</h3>
-          <p>Konsultasi khusus & permintaan layanan di luar daftar standar.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="antrian" class="container antrian-section">
-      <h2>Daftar Antrian</h2>
-
-      <form id="formAntrian" class="form-inline" aria-label="Form pendaftaran antrian">
-        <label class="sr-only" for="namaPelanggan">Nama</label>
-        <input id="namaPelanggan" name="namaPelanggan" type="text" placeholder="Nama lengkap" required />
-
-        <label class="sr-only" for="jenisServis">Jenis servis</label>
-        <select id="jenisServis" name="jenisServis" required>
-          <option value="">Pilih jenis servis</option>
-          <option value="Servis Ringan">Servis Ringan</option>
-          <option value="Servis Berat">Servis Berat</option>
-          <option value="Custom/Request">Custom / Request</option>
-        </select>
-
-        <button type="submit" class="btn">Tambah Antrian</button>
-      </form>
-
-      <div class="daftar-antrian">
-        <h3>Daftar Saat Ini</h3>
-        <ul id="listAntrian" class="list-reset" aria-live="polite"></ul>
-      </div>
-    </section>
-
-    <section id="rating" class="container rating-section" aria-labelledby="ratingTitle">
-      <h2 id="ratingTitle">Ulasan & Kepuasan Pelanggan</h2>
-      <p class="muted">Satu ulasan per nama. Nama diambil dari formulir antrian atau sesi anonim.</p>
-
-      <div class="rating-card">
-        <div class="rating-widget" id="ratingWidget" role="radiogroup" aria-label="Berikan rating layanan">
-          <!-- left-to-right 1 → 5 -->
-          <button class="star" data-value="1" aria-label="1 bintang" role="radio" aria-checked="false">★</button>
-          <button class="star" data-value="2" aria-label="2 bintang" role="radio" aria-checked="false">★</button>
-          <button class="star" data-value="3" aria-label="3 bintang" role="radio" aria-checked="false">★</button>
-          <button class="star" data-value="4" aria-label="4 bintang" role="radio" aria-checked="false">★</button>
-          <button class="star" data-value="5" aria-label="5 bintang" role="radio" aria-checked="false">★</button>
-        </div>
-
-        <div class="rating-summary">
-          <div id="ratingText" class="rating-text">Belum ada rating</div>
-          <div id="ratingMeta" class="rating-meta" aria-hidden="true"></div>
-        </div>
-      </div>
-
-      <div class="reviews">
-        <h4>Ulasan Terbaru</h4>
-        <ul id="reviewsList" class="list-reset" aria-live="polite"></ul>
-      </div>
-    </section>
-
-    <section id="kontak" class="container">
-      <h2>Kontak</h2>
-      <p>Alamat: Jl. Raya Kediri - Blitar No.71, Pule Utara, Kediri, Jawa Timur</p>
-      <p>Tel: <a href="tel:+6285607005592">0856-0700-5592</a> • Email: <a href="mailto:sparkyteam@gmail.com">sparkyteam@gmail.com</a></p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small>© 2025 SPARKY — Semua hak dilindungi.</small>
+    <div class="header-actions">
+      <button id="themeToggle" class="btn-ghost" type="button" aria-pressed="false" aria-label="Beralih mode gelap/terang">🌗</button>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <a id="whatsappFloating" class="whatsapp-float" href="https://wa.me/6285607005592?text=Halo%20SPARKY" aria-label="Chat via WhatsApp" target="_blank" rel="noopener">
-    <!-- inline icon -->
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 .01 5.36.01 12A11.9 11.9 0 0 0 3.22 18L0 24l6.23-3.22A11.9 11.9 0 0 0 12 24c6.63 0 11.99-5.36 11.99-12 0-3.2-1.24-6.18-3.47-8.52zM12 21.75c-1.5 0-2.97-.39-4.27-1.13l-.31-.18-3.72 1 1-3.63-.2-.33A8.8 8.8 0 0 1 3.25 12c0-4.86 3.89-8.75 8.75-8.75S20.75 7.14 20.75 12 16.86 21.75 12 21.75z"/></svg>
-  </a>
+    <main>
+        <section class="hero container">
+            <div class="hero-inner">
+                <h2>Selamat Datang di SPARKY</h2>
+                <p>Layanan servis profesional untuk alat elektronik rumah tangga & industri.</p>
+                <div class="hero-ctas">
+                    <a class="btn" href="index.html#antrian">Lihat Layanan</a>
+                    <a class="btn btn-outline" href="#kontak">Hubungi Kami</a>
+                </div>
+            </div>
+        </section>
 
-  <script src="./script.js" defer></script>
+        <section id="layanan" class="container">
+            <h2>Layanan Kami</h2>
+            <div class="cards">
+                <article class="card">
+                    <h3>Servis Ringan</h3>
+                    <p>Perbaikan perangkat rumah tangga: kipas, dispenser, lampu, dan lainnya.</p>
+                </article>
+                <article class="card">
+                    <h3>Servis Berat</h3>
+                    <p>Perbaikan peralatan industri & komponen dengan prosedur keselamatan lengkap.</p>
+                </article>
+                <article class="card">
+                    <h3>Custom / Konsultasi</h3>
+                    <p>Konsultasi khusus & permintaan layanan di luar daftar standar.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="antrian" class="container antrian-section">
+            <h2>Daftar Antrian</h2>
+
+            <div class="queue-grid">
+              <!-- Form card -->
+              <div class="queue-card" aria-labelledby="antrianFormTitle">
+                <h3 id="antrianFormTitle" style="margin-top:0">Daftar Baru</h3>
+                <form id="formAntrian" class="form-inline" aria-label="Form pendaftaran antrian">
+                    <label class="sr-only" for="namaPelanggan">Nama</label>
+                    <input id="namaPelanggan" name="namaPelanggan" type="text" placeholder="Nama lengkap" required />
+                    <label class="sr-only" for="jenisServis">Jenis servis</label>
+                    <select id="jenisServis" name="jenisServis" required>
+                        <option value="">Pilih jenis servis</option>
+                        <option value="Servis Ringan">Servis Ringan</option>
+                        <option value="Servis Berat">Servis Berat</option>
+                        <option value="Custom/Request">Custom / Request</option>
+                    </select>
+                    <button type="submit" class="btn">Tambah</button>
+                </form>
+
+                <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
+                    <button id="deleteQueue" class="btn-outline" style="display:none">Hapus Semua (Admin)</button>
+                </div>
+              </div>
+
+              <!-- List card -->
+              <div class="queue-card">
+                <div class="daftar-antrian">
+                    <h3>Daftar Saat Ini</h3>
+                    <ul id="listAntrian" class="list-reset" aria-live="polite">
+                        <li class="queue-empty">Memuat antrian...</li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section id="rating" class="container rating-section" aria-labelledby="ratingTitle">
+            <h2 id="ratingTitle">Ulasan & Kepuasan Pelanggan</h2>
+            <p class="muted">Satu ulasan per nama. Nama diambil dari formulir antrian atau sesi anonim.</p>
+            <div class="rating-card">
+            <div class="rating-widget" id="ratingWidget" role="radiogroup" aria-label="Berikan rating layanan">
+                <button class="star" data-value="1" aria-label="1 bintang" role="radio" aria-checked="false">★</button>
+                <button class="star" data-value="2" aria-label="2 bintang" role="radio" aria-checked="false">★</button>
+                <button class="star" data-value="3" aria-label="3 bintang" role="radio" aria-checked="false">★</button>
+                <button class="star" data-value="4" aria-label="4 bintang" role="radio" aria-checked="false">★</button>
+                <button class="star" data-value="5" aria-label="5 bintang" role="radio" aria-checked="false">★</button>
+            </div>
+            <div class="rating-summary">
+                <div id="ratingText" class="rating-text">Belum ada rating</div>
+                <div id="ratingMeta" class="rating-meta" aria-hidden="true"></div>
+            </div>
+            </div>
+            <div class="reviews">
+            <h4>Ulasan Terbaru</h4>
+            <ul id="reviewsList" class="list-reset" aria-live="polite"></ul>
+            </div>
+
+            <script>
+            (function () {
+                const STORAGE_KEY = 'sparky_reviews_v1';
+                const widget = document.getElementById('ratingWidget');
+                const stars = Array.from(widget.querySelectorAll('.star'));
+                const ratingText = document.getElementById('ratingText');
+                const ratingMeta = document.getElementById('ratingMeta');
+                const reviewsList = document.getElementById('reviewsList');
+                const nameInput = document.getElementById('namaPelanggan');
+                const formAntrian = document.getElementById('formAntrian');
+
+                // Helpers
+                function loadReviews() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+                } catch (e) {
+                    return [];
+                }
+                }
+                function saveReviews(reviews) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+                }
+                function getDisplayName() {
+                const raw = nameInput && nameInput.value && nameInput.value.trim();
+                if (raw) return raw;
+                // session anonymous id
+                if (!sessionStorage.getItem('sparky_anon')) {
+                    sessionStorage.setItem('sparky_anon', 'Anon-' + Date.now().toString().slice(-5));
+                }
+                return sessionStorage.getItem('sparky_anon');
+                }
+                function updateSummary(reviews) {
+                if (!reviews.length) {
+                    ratingText.textContent = 'Belum ada rating';
+                    ratingMeta.textContent = '';
+                    return;
+                }
+                const avg = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length);
+                ratingText.textContent = 'Rating rata-rata: ' + avg.toFixed(2) + ' ★';
+                ratingMeta.textContent = reviews.length + ' ulasan';
+                }
+                function renderReviews(reviews) {
+                reviewsList.innerHTML = '';
+                const sorted = reviews.slice().sort((a,b) => b.time - a.time);
+                sorted.forEach(r => {
+                    const li = document.createElement('li');
+                    li.className = 'review-item';
+                    li.innerHTML = '<strong>' + escapeHtml(r.name) + '</strong> — ' + r.rating + ' ★'
+                    + (r.comment ? ('<div class="review-comment">' + escapeHtml(r.comment) + '</div>') : '')
+                    + '<div class="review-time muted">' + new Date(r.time).toLocaleString() + '</div>';
+                    reviewsList.appendChild(li);
+                });
+                }
+                function escapeHtml(s) {
+                return String(s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+                }
+                function setStarUI(value) {
+                stars.forEach(st => {
+                    const v = Number(st.getAttribute('data-value'));
+                    const checked = v <= value;
+                    st.classList.toggle('selected', checked);
+                    st.setAttribute('aria-checked', String(checked));
+                });
+                }
+
+                // Save rating (one per name)
+                function saveRating(rating, comment) {
+                const name = getDisplayName();
+                const reviews = loadReviews();
+                const existing = reviews.find(r => r.name === name);
+                const entry = { name, rating, comment: comment || '', time: Date.now() };
+                if (existing) {
+                    // replace
+                    const idx = reviews.indexOf(existing);
+                    reviews[idx] = entry;
+                } else {
+                    reviews.push(entry);
+                }
+                saveReviews(reviews);
+                updateSummary(reviews);
+                renderReviews(reviews);
+                ratingText.setAttribute('aria-live','polite');
+                ratingText.textContent = 'Terima kasih atas rating Anda — ' + rating + ' ★';
+                }
+
+                // Star interactions
+                stars.forEach(st => {
+                const v = Number(st.getAttribute('data-value'));
+                st.addEventListener('mouseenter', () => setStarUI(v));
+                st.addEventListener('focus', () => setStarUI(v));
+                st.addEventListener('mouseleave', () => {
+                    // clear hover state to reflect stored or none
+                    const reviews = loadReviews();
+                    const name = getDisplayName();
+                    const existing = reviews.find(r => r.name === name);
+                    setStarUI(existing ? existing.rating : 0);
+                });
+                st.addEventListener('click', async () => {
+                    const comment = prompt('Tambahkan komentar singkat (opsional):');
+                    saveRating(v, comment);
+                });
+                st.addEventListener('keydown', (ev) => {
+                    if (ev.key === 'Enter' || ev.key === ' ') {
+                    ev.preventDefault();
+                    st.click();
+                    } else if (ev.key === 'ArrowLeft' || ev.key === 'ArrowDown') {
+                    ev.preventDefault();
+                    const prev = stars[Math.max(0, stars.indexOf(st) - 1)];
+                    prev.focus();
+                    } else if (ev.key === 'ArrowRight' || ev.key === 'ArrowUp') {
+                    ev.preventDefault();
+                    const next = stars[Math.min(stars.length - 1, stars.indexOf(st) + 1)];
+                    next.focus();
+                    }
+                });
+                });
+
+                // When user submits antrian, keep name (so subsequent rating uses it)
+                if (formAntrian) {
+                formAntrian.addEventListener('submit', () => {
+                    // nameInput.value already set by user; no further action required.
+                    // Optionally, focus first star to encourage rating.
+                    setTimeout(() => stars[4].focus(), 300);
+                });
+                }
+
+                // Init
+                (function init() {
+                const reviews = loadReviews();
+                updateSummary(reviews);
+                renderReviews(reviews);
+                // set UI according to current user if they already rated
+                const name = getDisplayName();
+                const existing = reviews.find(r => r.name === name);
+                setStarUI(existing ? existing.rating : 0);
+                })();
+            })();
+            </script>
+
+            <style>
+            /* Minimal styles for selected stars and review items */
+            .rating-widget { display:inline-flex; gap:6px; }
+            .rating-widget .star { background:transparent;border:0;font-size:28px;cursor:pointer;color:#bbb; }
+            .rating-widget .star.selected { color:#f5b301; }
+            .review-item { margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid #eee; }
+            .review-comment { margin-top:4px; color:#333; }
+            .review-time.muted { font-size:12px; color:#666; margin-top:4px; }
+            </style>
+        </section>
+        <section id="kontak" class="container">
+            <h2>Kontak</h2>
+            <p class="muted">(Informasi kontak akan ditambahkan di sini.)</p>
+        </section>
+        <section id="blogs" class="container">
+            <h2>Blogs</h2>
+            <p class="muted">(Daftar artikel/blog akan ditambahkan di sini.)</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© 2025 SPARKY — Semua hak dilindungi.</small>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
-<!-- ...existing code... -->
